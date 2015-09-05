@@ -1,5 +1,5 @@
 package com.provisioning.DAOforBeans;
-
+import com.proisioning.webservices.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.sql.*;
@@ -8,7 +8,7 @@ import CreateHashMap.CreateHashMap;
 
 import com.provisioning.connectionpool.DataSource;
 import com.provisioning.javabeans.DSLAM;
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
+//import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
 public class DSLAMDAO implements Runnable {
 	int datacap = 5;
@@ -887,7 +887,7 @@ public class DSLAMDAO implements Runnable {
 		}
 	}
 
-	public void jsonreturn() {
+	public String jsonreturn() {
 	System.out.println("json entered");
 		String dd="", stat="";
 		int f = 0;
@@ -939,10 +939,13 @@ public class DSLAMDAO implements Runnable {
 					}
 				}
 				System.out.println(cid+oid+stat+dd+stype+sid+quantity+pname+pid);
+				 JsonCreatorNew json=new JsonCreatorNew();
+					String jsonObj=json.json_creator(cid,oid,stat,dd,stype,sid,quantity,pname,pid);
+					return jsonObj;
 				}
 				
 				// String
-				// jsonObj=JsonCreator(cid,oid,,dd,stype,sid,quantity,pname,pid);
+				
 			}
 			
 			if (f == 1) {
@@ -955,7 +958,7 @@ public class DSLAMDAO implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+       return null;    
 	}
 
 	public static void main(String[] args) {
