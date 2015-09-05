@@ -55,64 +55,64 @@ public class DSLAMDAO implements Runnable {
 
 	private void initializeServiceMap() {
 		// cmb services
-		servicesMap.put("Fios Internet 25mbps", "data");
-		servicesMap.put("Fios Internet 50mbps", "data");
-		servicesMap.put("Fios Internet 25+Fios Basic TV", "video and data");
-		servicesMap.put("Fios Internet 50+Fios Basic TV ", "video and data");
-		servicesMap.put("Fios Internet 25+Fios TV Preffered HD",
+		servicesMap.put("fios internet 25mbps", "data");
+		servicesMap.put("fios internet 50mbps", "data");
+		servicesMap.put("fios internet 25+fios basic tv", "video and data");
+		servicesMap.put("fios internet 50+fios basic tv ", "video and data");
+		servicesMap.put("fios internet 25+fios tv preffered hd",
 				"video and data");
-		servicesMap.put("Fios Internet 50+Fios TV Preffered HD",
+		servicesMap.put("fios internet 50+fios tv preffered hd",
 				"video and data");
-		servicesMap.put("Fios Internet25+FiosTV customTV", "video and data");
-		servicesMap.put("Fios Internet50+ FiosTV customTV", "video and data");
-		servicesMap.put("Fios Internet 25+Fios Basic TV+Fios DigitalVoice",
+		servicesMap.put("fios internet25+fiostv customtv", "video and data");
+		servicesMap.put("fios internet50+ fiostv customtv", "video and data");
+		servicesMap.put("fios internet 25+fios basic tv+fios digitalvoice",
 				"voice and video and data");
-		servicesMap.put("Fios Internet 50+Fios Basic TV+Fios DigitalVoice",
+		servicesMap.put("fios internet 50+fios basic tv+fios digitalvoice",
 				"voice and video and data");
 		// ves srvices
-		servicesMap.put("AP_3G_150_Vo_150", "ves");
-		servicesMap.put("AP_4G_200_Vi_200", "ves");
-		servicesMap.put("PI_VoVi_200_200_125", "ves");
-		servicesMap.put("PI_Vi_150_250_175", "ves");
-		servicesMap.put("AI_3G_200_150_75", "ves");
-		servicesMap.put("AI_4G_250_200_125", "ves");
-		servicesMap.put("API_4G_200_Vi_150_200_125", "ves");
-		servicesMap.put("API_4GLte_250_VoVi_250_200_125", "ves");
-		servicesMap.put("Access_3G_200", "ves");
-		servicesMap.put("Access_4G_300", "ves");
-		servicesMap.put("Access_4GLTE_300", "ves");
-		servicesMap.put("Access_4G_250", "ves");
-		servicesMap.put("Access_4GLTE_250", "ves");
-		servicesMap.put("Voice_200", "ves");
-		servicesMap.put("Videeo_200", "ves");
-		servicesMap.put("Video_250", "ves");
-		servicesMap.put("Voice_Video_250", "ves");
-		servicesMap.put("Voice_Video_300", "ves");
-		servicesMap.put("ID_200_125", "ves");
-		servicesMap.put("ID_200_175", "ves");
-		servicesMap.put("ID__250_225", "ves");
-		servicesMap.put("ID__300_225", "ves");
-		servicesMap.put("ID__300_275", "ves");
+		servicesMap.put("ap_3g_150_vo_150", "ves");
+		servicesMap.put("ap_4g_200_vi_200", "ves");
+		servicesMap.put("pi_vovi_200_200_125", "ves");
+		servicesMap.put("pi_vi_150_250_175", "ves");
+		servicesMap.put("ai_3g_200_150_75", "ves");
+		servicesMap.put("ai_4g_250_200_125", "ves");
+		servicesMap.put("api_4g_200_vi_150_200_125", "ves");
+		servicesMap.put("api_4glte_250_vovi_250_200_125", "ves");
+		servicesMap.put("access_3g_200", "ves");
+		servicesMap.put("access_4g_300", "ves");
+		servicesMap.put("access_4glte_300", "ves");
+		servicesMap.put("access_4g_250", "ves");
+		servicesMap.put("access_4glte_250", "ves");
+		servicesMap.put("voice_200", "ves");
+		servicesMap.put("videeo_200", "ves");
+		servicesMap.put("video_250", "ves");
+		servicesMap.put("voice_video_250", "ves");
+		servicesMap.put("voice_video_300", "ves");
+		servicesMap.put("id_200_125", "ves");
+		servicesMap.put("id_200_175", "ves");
+		servicesMap.put("id__250_225", "ves");
+		servicesMap.put("id__300_225", "ves");
+		servicesMap.put("id__300_275", "ves");
 		// wireless services
-		servicesMap.put("1GB per 2C", "wireless");
-		servicesMap.put("2GB per 2C", "wireless");
-		servicesMap.put("3GB per 2C", "wireless");
-		servicesMap.put("4GB per 2C", "wireless");
-		servicesMap.put("3GB per 3C", "wireless");
-		servicesMap.put("4GB per 3C", "wireless");
-		servicesMap.put("6GB per 3C", "wireless");
-		servicesMap.put("6GB per 4C", "wireless");
-		servicesMap.put("Iphone 5_1GB_30$", "wireless");
-		servicesMap.put("Iphone6_3GB_45$", "wireless");
-		servicesMap.put("Iphone6_6GB_60$", "wireless");
-		servicesMap.put("SamsungGalaxy_S6_3GB/45$", "wireless");
-		servicesMap.put("SamsungGalaxy_S6_6GB/60$", "wireless");
-		servicesMap.put("Iphone6_12GB_80$", "wireless");
-		servicesMap.put("Iphone5_6GB-60$", "wireless");
-		servicesMap.put("SamsungGalaxy6", "wireless");
-		servicesMap.put("1GB per 30$", "wireless");
-		servicesMap.put("3GB per45$", "wireless");
-		servicesMap.put("6GBper60$", "wireless");
+		servicesMap.put("1gb per 2c", "wireless");
+		servicesMap.put("2gb per 2c", "wireless");
+		servicesMap.put("3gb per 2c", "wireless");
+		servicesMap.put("4gb per 2c", "wireless");
+		servicesMap.put("3gb per 3c", "wireless");
+		servicesMap.put("4gb per 3c", "wireless");
+		servicesMap.put("6gb per 3c", "wireless");
+		servicesMap.put("6gb per 4c", "wireless");
+		servicesMap.put("iphone 5_1gb_30$", "wireless");
+		servicesMap.put("iphone6_3gb_45$", "wireless");
+		servicesMap.put("iphone6_6gb_60$", "wireless");
+		servicesMap.put("samsunggalaxy_s6_3gb/45$", "wireless");
+		servicesMap.put("samsunggalaxy_s6_6gb/60$", "wireless");
+		servicesMap.put("iphone6_12gb_80$", "wireless");
+		servicesMap.put("iphone5_6gb-60$", "wireless");
+		servicesMap.put("samsunggalaxy6", "wireless");
+		servicesMap.put("1gb per 30$", "wireless");
+		servicesMap.put("3gb per45$", "wireless");
+		servicesMap.put("6gbper60$", "wireless");
 	}
 
 	public DSLAM createRequiredDslam(String dslamid) {
@@ -165,8 +165,7 @@ public class DSLAMDAO implements Runnable {
 		int stateid = Integer.parseInt((String) mpdslam.get("stateid"));
 		String dslamid = null;
 		try {
-			PreparedStatement pst = con
-					.prepareStatement("SELECT DSLAM_ID FROM DSLAM WHERE START_STATE_ID<=? AND END_STATE_ID >=?");
+			PreparedStatement pst = con.prepareStatement("SELECT DSLAM_ID FROM DSLAM WHERE START_STATE_ID<=? AND END_STATE_ID >=?");
 			pst.setInt(1, stateid);
 			pst.setInt(2, stateid);
 			ResultSet rs = pst.executeQuery();
@@ -184,18 +183,19 @@ public class DSLAMDAO implements Runnable {
 	public Boolean[] getDslamShelfStatus(HashMap<String, Object> mydslam) {
 		for (int i = 0; i < 6; i++)
 			shelfStatus[i] = false;
-		System.out.println(mydslam.get("lob"));
-		if (mydslam.get("lob").equals("wireless")) {
+		System.out.println((String)mydslam.get("lineofbusiness"));
+		String lob=(String)mydslam.get("lineofbusiness");
+		if (lob.equals("vzw")) {
 			shelfStatus[0] = true;
 
-		} else if (mydslam.get("lob").equals("ves"))
+		} else if (lob.equals("ves"))
 			shelfStatus[1] = true;
 		else {
-			System.out.println(mydslam.get("servicename"));
-			String servicename = servicesMap.get(mydslam.get("servicename"));
+			System.out.println((String)mydslam.get("servicename"));
+			String servicename = servicesMap.get((String)mydslam.get("servicename"));
 			System.out.println(servicename);
 			shelfStatus[5] = true;
-			switch (servicename) {
+			switch(servicename) {
 			case "data":
 				shelfStatus[4] = true;
 				break;
@@ -224,11 +224,10 @@ public class DSLAMDAO implements Runnable {
 	public void assignVesCard(int customerid, String dslamid) {
 		// String dslamid=getRequiredDslam(h);
 		try {
-			PreparedStatement pst = con
-					.prepareStatement("SELECT ves_card_id from vescard where dslam_id='"
+			PreparedStatement pst = con.prepareStatement("SELECT ves_card_id from vescard where dslam_id='"
 							+ dslamid + "'and status='AVAILABLE'");
 			ResultSet rs = pst.executeQuery();
-			System.out.println("rsexec");
+			//System.out.println("rsexec");
 			while (rs.next()) {
 				System.out.println("in rs" + rs.getString("ves_card_id"));
 				pst = con.prepareStatement("update vescard set CUSTOMER_ID="
@@ -237,9 +236,8 @@ public class DSLAMDAO implements Runnable {
 				System.out.println("aftr");
 
 				int y = pst.executeUpdate();
-				System.out.println("aftr2");
-				pst = con
-						.prepareStatement("update vescard set status='ASSIGNED' where ves_card_id='"
+				//System.out.println("aftr2");
+				pst = con.prepareStatement("update vescard set status='ASSIGNED' where ves_card_id='"
 								+ rs.getString("ves_card_id") + "'");
 				y = pst.executeUpdate();
 				System.out.println("aftr3");
@@ -256,8 +254,7 @@ public class DSLAMDAO implements Runnable {
 	public void assignWirelessCard(int customerid, String dslamid) {
 		try {
 			System.out.println("in try");
-			PreparedStatement pst = con
-					.prepareStatement("SELECT wireless_id from wireless where dslam_id='"
+			PreparedStatement pst = con.prepareStatement("SELECT wireless_id from wireless where dslam_id='"
 							+ dslamid + "'and status='AVAILABLE'");
 			System.out.println("pst");
 			ResultSet rs = pst.executeQuery();
@@ -386,8 +383,7 @@ public class DSLAMDAO implements Runnable {
 		if (shelfStatus[2] == true) {
 			System.out.println("shelf2");
 			try {
-				PreparedStatement pst = con
-						.prepareStatement("update voicecardport set pon_port_id=?,status='ASSIGNED' where voice_port_id=? ");
+				PreparedStatement pst = con.prepareStatement("update voicecardport set pon_port_id=?,status='ASSIGNED' where voice_port_id=? ");
 				pst.setString(1, ponportid);
 				pst.setString(2, voiceportid);
 				pst.executeUpdate();
@@ -398,8 +394,7 @@ public class DSLAMDAO implements Runnable {
 		}
 		if (shelfStatus[3] == true) {
 			try {
-				PreparedStatement pst = con
-						.prepareStatement("update videocard set pon_port_id=?, status='ASSIGNED' where video_port_id=? ");
+				PreparedStatement pst = con.prepareStatement("update videocard set pon_port_id=?, status='ASSIGNED' where video_port_id=? ");
 				pst.setString(1, ponportid);
 				pst.setString(2, videocardid);
 				pst.executeUpdate();
@@ -494,10 +489,9 @@ public class DSLAMDAO implements Runnable {
 		input = (String) servicesMap.get("servicename");
 		String[] servicename = input.split(",");
 		// String servicename[]=(String[])servicesMap.get("servicename");
-		int customerid = Integer.parseInt((String) servicesMap
-				.get("customerid"));
-		String lob = (String) servicesMap.get("lob");
-		int orderid = 1234;// Integer.parseInt((String)servicesMap.get("orderid"));
+		int customerid = Integer.parseInt((String) servicesMap.get("customerid"));
+		String lob = (String) servicesMap.get("lineofbusiness");
+		int orderid =Integer.parseInt((String)servicesMap.get("orderid"));
 		System.out.println("in services");
 		for (int i = 0; i < servicecode.length; i++) {
 			String serviceType = servicename[i];
@@ -513,7 +507,7 @@ public class DSLAMDAO implements Runnable {
 				insertIntoProduct(servicesMap, counter);
 				counter++;
 			} catch (SQLException e) {
-				System.out.println("problem in service tbl" + e.getMessage());
+				System.out.println("problem in aaa service tbl" + e.getMessage());
 			}
 			System.out.println("inserted into service");
 		}
@@ -521,7 +515,7 @@ public class DSLAMDAO implements Runnable {
 
 	private void insertIntoProduct(HashMap<String, Object> productMap,
 			int serviceid) {
-
+		System.out.println("got in");
 		String input = (String) productMap.get("productcode");
 		String[] productcode = input.split(",");
 		// String productcode[]=(String[])productMap.get("productcode");
@@ -530,53 +524,51 @@ public class DSLAMDAO implements Runnable {
 		System.out.println("in product");
 		// String productname[]=(String[])productMap.get("productname");
 		// int qty=(int)productMap.get("Quantity");
-		int qty = 10;
+		int qty = Integer.parseInt((String)productMap.get("quantity"));
 		for (int i = 0; i < productcode.length; i++) {
 			String procode = productcode[i];
 			String proname = productname[i];
 			try {
-				PreparedStatement pst = con
-						.prepareStatement("insert into product values(?,?,?,?,?)");
+				PreparedStatement pst = con.prepareStatement("insert into product(PRODUCT_ID,PRODUCT_NAME,SERVICE_ID,QUANTITY,STATUS) values(?,?,?,?,?) ");
 				pst.setInt(1, cnt);
 				pst.setString(2, proname);
 				pst.setInt(3, serviceid);
 				pst.setInt(4, qty);
 				pst.setString(5, "pending");
-				ResultSet rs = pst.executeQuery();
+				pst.executeQuery();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("problem with insert into product "+e.getMessage());
 			}
 			cnt++;
 		}
 		System.out.println("inserted into product");
 	}
 
-	public void insertIntoOrder(HashMap<String, Object> servicesMap) {
-		int orderid = 1234;// Integer.parseInt((String)servicesMap.get("orderid"));
-		int customerid = Integer.parseInt((String) servicesMap
-				.get("customerid"));
-		String due_date = (String) servicesMap.get("duedate");
+	public void insertIntoOrder(HashMap<String, Object> orderMap) {
+		System.out.println(orderMap.get("orderid"));
+		int orderid = Integer.parseInt((String)orderMap.get("orderid"));// Integer.parseInt((String)servicesMap.get("orderid"));
+		int customerid = Integer.parseInt((String) orderMap.get("customerid"));
+		String due_date = (String) orderMap.get("duedate");
 		PreparedStatement pst;
 		System.out.println("in order");
 		try {
-			pst = con
-					.prepareStatement("insert into orderprovision values(?,?,?,?)");
-
-			pst.setString(3, "processing");
+			pst = con.prepareStatement("insert into orderprovision values(?,?,?,?)");
 			pst.setInt(1, orderid);
 			pst.setInt(2, customerid);
+			pst.setString(3, "processing");
 			pst.setString(4, due_date);
 			ResultSet rs = pst.executeQuery();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("problem with insert into order " + e.getMessage());
 		}
 	}
 
 	public void insertIntoCustomer(HashMap<String, Object> jsonDetails) {
 		int id = Integer.parseInt((String) jsonDetails.get("customerid"));
 		String name = (String) jsonDetails.get("customername");
+		String names[]=name.split(" ");
+		String firstName=names[0];
+		String lastName=names[1];
 		String type = (String) jsonDetails.get("customertype");
 		int stateid = Integer.parseInt((String) jsonDetails.get("stateid"));
 		String street = (String) jsonDetails.get("streetname");
@@ -589,17 +581,18 @@ public class DSLAMDAO implements Runnable {
 		System.out.println("in insert cust");
 		try {
 			PreparedStatement pst = con
-					.prepareStatement("INSERT INTO CUSTOMER(CUSTOMER_ID,FIRST_NAME,TYPE,STREETNAME,ZIPCODE,CITY,STATE,COUNTRY,STATUS,STATE_ID) VALUES(?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("INSERT INTO CUSTOMER(CUSTOMER_ID,FIRST_NAME,LAST_NAME,TYPE,STREETNAME,ZIPCODE,CITY,STATE,COUNTRY,STATUS,STATE_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 			pst.setInt(1, id);
-			pst.setString(2, name);
-			pst.setString(3, type);
-			pst.setString(4, street);
-			pst.setString(5, zip);
-			pst.setString(6, city);
-			pst.setString(7, state);
-			pst.setString(8, country);
-			pst.setString(9, status);
-			pst.setInt(10, stateid);
+			pst.setString(2, firstName);
+			pst.setString(3, lastName);
+			pst.setString(4, type);
+			pst.setString(5, street);
+			pst.setString(6, zip);
+			pst.setString(7, city);
+			pst.setString(8, state);
+			pst.setString(9, country);
+			pst.setString(10, status);
+			pst.setInt(11, stateid);
 			pst.executeQuery();
 			pst.close();
 		} catch (SQLException e) {
@@ -609,8 +602,8 @@ public class DSLAMDAO implements Runnable {
 
 		insertIntoOrder(jsonDetails);
 		insertIntoServices(jsonDetails);
-		DSLAMDAO assignCustomer = new DSLAMDAO();
-		assignCustomer.assignPorts(id, stateid, jsonDetails);
+		///DSLAMDAO assignCustomer = new DSLAMDAO();
+	    assignPorts(id, stateid, jsonDetails);
 		updateOrderStatus(orderid, "PROVISIONED");
 	}
 
@@ -714,7 +707,7 @@ public class DSLAMDAO implements Runnable {
 			// System.out.println("1"+rs.getString("TYPE"));
 			while (rs.next()) {
 				System.out.println(rs.getString("type"));
-				getdsalmstatus.put("lob", rs.getString("TYPE"));
+				getdsalmstatus.put("lineofbusiness", rs.getString("TYPE"));
 			}
 			pst1 = con
 					.prepareStatement("select SERVICE_TYPE from SERVICES where customer_id=?");

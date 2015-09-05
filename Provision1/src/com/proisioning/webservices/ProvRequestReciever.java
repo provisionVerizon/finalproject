@@ -25,11 +25,17 @@ public class ProvRequestReciever {
 		HashMap<String, Object> mapObject = new HashMap<String, Object>();
 		
 				CreateHashMap.createHashMapFromJsonString(product, mapObject);
+//				System.out.println("at receiver");
+//				for (Map.Entry<String, Object> entry : mapObject.entrySet()) {
+//					System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
+//				}
 				if( mapObject.containsKey("customertype") && mapObject.containsValue("new")){
 					dslamdao.insertIntoCustomer(mapObject);
 				}
 				else
+				{	
 					dslamdao.insertIntoOrder(mapObject);
+				}
 		return "acknowledge";
 	}
 	@GET

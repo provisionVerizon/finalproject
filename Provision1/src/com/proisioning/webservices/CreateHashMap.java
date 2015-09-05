@@ -69,12 +69,12 @@ public class CreateHashMap{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 			
-		String str = "{\"lineofbusiness\":\"ves|vzw|cmb\",\"customerdetails\":{\"customerid\":\"1234567\",\"customername\":\"Suresh Siddharth\", \"customertype\":\"new\",\"connectionaddress\":{\"streetname\":\"10, mg road\",\"zipcode\":\"560102\", \"city\":\"bangalore\",\"state\":\"karnataka\",\"country\":\"india\"},\"contactnumber\":\"9500689870\"}, \"orderdetails\":{\"orderid\":\"1234567\",\"dateofbooking\":\"18-aug-2015\",\"duedate\":\"25-aug-2015\"},\"services\":[{\"servicecode\":\"ves15ab\",\"servicename\":\"pipav\",\"mdn\":[\"78902222000\",\"7823456789\"],\"quantity\":\"20\"}],\"products\":[{\"productcode\":\"fgh123\",\"productname\":\"pip\"}]}";
-
+		//String str = "{\"lineofbusiness\":\"ves|vzw|cmb\",\"customerdetails\":{\"customerid\":\"1234567\",\"customername\":\"Suresh Siddharth\", \"customertype\":\"new\",\"connectionaddress\":{\"streetname\":\"10, mg road\",\"zipcode\":\"560102\", \"city\":\"bangalore\",\"state\":\"karnataka\",\"country\":\"india\"},\"contactnumber\":\"9500689870\"}, \"orderdetails\":{\"orderid\":\"1234567\",\"dateofbooking\":\"18-aug-2015\",\"duedate\":\"25-aug-2015\"},\"services\":[{\"servicecode\":\"ves15ab\",\"servicename\":\"pipav\",\"mdn\":[\"78902222000\",\"7823456789\"],\"quantity\":\"20\"}],\"products\":[{\"productcode\":\"fgh123\",\"productname\":\"pip\"}]}";
+		String provisioning="{\"lineofbusiness\": \"cmb\",\"customerdetails\": {\"customerid\": 1234567,\"customername\": \"Suresh Siddharth\",\"customertype\": \"new\",\"connectionaddress\": {\"streetname\": \"10, mg road\",\"zipcode\": 560102,\"city\": \"bangalore\",\"state\": \"karnataka\",\"stateid\":20,\"country\": \"india\"},\"contactnumber\":9500689870},\"orderdetails\": { \"orderid\": 1234567,\"dateofbooking\": \"18-aug-2015\",\"duedate\": \"25-aug-2015\",\"services\": [ {\"servicecode\": \"p1027\",\"servicename\": \"fios internet 50mbps\",\"mdn\": \"null\",\"quantity\": 1}],\"products\":[{\"productcode\": \"e1048\",\"productname\": \"router\"}]}}";
 		
 		
 		HashMap<String, Object> mapObject = new HashMap<String, Object>();
-		createHashMapFromJsonString( str , mapObject);
+		createHashMapFromJsonString( provisioning , mapObject);
 		 // String xxx = (String) mapObject.get("lineofbusiness");
 		  //System.out.println(xxx);
 		  

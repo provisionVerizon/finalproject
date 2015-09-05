@@ -35,10 +35,6 @@ public class JsonCreatorNew {
 				
 			}
 			JsonArray jArray4=builder.build();
-			
-			
-			
-			
 	   JsonArrayBuilder builder1= Json.createArrayBuilder();
     	for(int j=0;j<serviceName.size();j++){
 		JsonObjectBuilder Jsonobj= Json.createObjectBuilder();

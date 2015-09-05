@@ -23,10 +23,10 @@ public class Configuration {
 	private void  init()
 	{
 		DB_DRIVER="oracle.jdbc.driver.OracleDriver";
-		DB_URL="jdbc:oracle:thin:@localhost:1521:orcl";
-		DB_USERNAME="scott";
+		DB_URL="jdbc:oracle:thin:@localhost:1521:xe";
+		DB_USERNAME="SCOTT";
 		DB_PASSWORD="tiger";
-		DB_MAX_CONNECTIONS=100;
+		DB_MAX_CONNECTIONS=20;
 	}
 	
 }
