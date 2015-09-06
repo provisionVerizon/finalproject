@@ -1,25 +1,35 @@
 package com.provisioning.DAOforBeans;
-import com.proisioning.webservices.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.sql.*;
 
-import CreateHashMap.CreateHashMap;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 
+import com.proisioning.webservices.JsonCreatorNew;
+import com.proisioning.webservices.ProvisionedStatus;
 import com.provisioning.connectionpool.DataSource;
 import com.provisioning.javabeans.DSLAM;
 //import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
-public class DSLAMDAO implements Runnable {
+public class DSLAMDAO{
 	int datacap = 5;
 	static int poncnt = 20;
-	static int ontseqno = 100;
-	static int cnt = 1000;
+	//static int ontseqno = 100;
+	//static int cnt = 1000;
 	Boolean shelfStatus[] = new Boolean[6];
 	Connection con;
 	HashMap<String, String> servicesMap;
 	
-
 	public DSLAMDAO() {
 		
 		for (int i = 0; i < 6; i++)
@@ -29,19 +39,6 @@ public class DSLAMDAO implements Runnable {
 		initializeServiceMap();
 	}
 
-	public void run() {
-
-		try {
-			while (true) {
-				jsonreturn();
-				Thread.sleep(10000);
-			}
-
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	private void initializeConnection() {
 		try {
@@ -497,6 +494,11 @@ public class DSLAMDAO implements Runnable {
 			String serviceType = servicename[i];
 			String serviceCode = servicecode[i];
 			try {
+				String sql="select max(service_id) as id from services";
+				Statement st=con.createStatement();
+				ResultSet rs=st.executeQuery(sql);
+				if(rs.next())
+				counter=rs.getInt("id")+1;
 				PreparedStatement pst = con
 						.prepareStatement("INSERT INTO services(service_id,customer_id,service_type,order_id) values(?,?,?,?)");
 				pst.setInt(1, counter);
@@ -505,7 +507,6 @@ public class DSLAMDAO implements Runnable {
 				pst.setInt(4, orderid);
 				pst.executeQuery();
 				insertIntoProduct(servicesMap, counter);
-				counter++;
 			} catch (SQLException e) {
 				System.out.println("problem in aaa service tbl" + e.getMessage());
 			}
@@ -516,6 +517,7 @@ public class DSLAMDAO implements Runnable {
 	private void insertIntoProduct(HashMap<String, Object> productMap,
 			int serviceid) {
 		System.out.println("got in");
+		int counter=100;
 		String input = (String) productMap.get("productcode");
 		String[] productcode = input.split(",");
 		// String productcode[]=(String[])productMap.get("productcode");
@@ -529,8 +531,13 @@ public class DSLAMDAO implements Runnable {
 			String procode = productcode[i];
 			String proname = productname[i];
 			try {
+				String sql="select max(product_id) as id from product";
+				Statement st=con.createStatement();
+				ResultSet rs=st.executeQuery(sql);
+				if(rs.next())
+				counter=rs.getInt("id")+1;
 				PreparedStatement pst = con.prepareStatement("insert into product(PRODUCT_ID,PRODUCT_NAME,SERVICE_ID,QUANTITY,STATUS) values(?,?,?,?,?) ");
-				pst.setInt(1, cnt);
+				pst.setInt(1, counter);
 				pst.setString(2, proname);
 				pst.setInt(3, serviceid);
 				pst.setInt(4, qty);
@@ -539,16 +546,26 @@ public class DSLAMDAO implements Runnable {
 			} catch (SQLException e) {
 				System.out.println("problem with insert into product "+e.getMessage());
 			}
-			cnt++;
 		}
 		System.out.println("inserted into product");
 	}
 
 	public void insertIntoOrder(HashMap<String, Object> orderMap) {
 		System.out.println(orderMap.get("orderid"));
+		Date date=null;
 		int orderid = Integer.parseInt((String)orderMap.get("orderid"));// Integer.parseInt((String)servicesMap.get("orderid"));
 		int customerid = Integer.parseInt((String) orderMap.get("customerid"));
 		String due_date = (String) orderMap.get("duedate");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+		java.util.Date utilDate;
+		try {
+			utilDate = formatter.parse(due_date);
+			date = new java.sql.Date(utilDate.getTime());
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		PreparedStatement pst;
 		System.out.println("in order");
 		try {
@@ -556,7 +573,7 @@ public class DSLAMDAO implements Runnable {
 			pst.setInt(1, orderid);
 			pst.setInt(2, customerid);
 			pst.setString(3, "processing");
-			pst.setString(4, due_date);
+			pst.setDate(4, date);
 			ResultSet rs = pst.executeQuery();
 		} catch (SQLException e) {
 			System.out.println("problem with insert into order " + e.getMessage());
@@ -579,9 +596,9 @@ public class DSLAMDAO implements Runnable {
 		int orderid = 1234;// Integer.parseInt((String)jsonDetails.get("orderid"));
 		String status = "pending";
 		System.out.println("in insert cust");
+		System.out.println(con);
 		try {
-			PreparedStatement pst = con
-					.prepareStatement("INSERT INTO CUSTOMER(CUSTOMER_ID,FIRST_NAME,LAST_NAME,TYPE,STREETNAME,ZIPCODE,CITY,STATE,COUNTRY,STATUS,STATE_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement pst = con.prepareStatement("INSERT INTO CUSTOMER(CUSTOMER_ID,FIRST_NAME,LAST_NAME,TYPE,STREETNAME,ZIPCODE,CITY,STATE,COUNTRY,STATUS,STATE_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 			pst.setInt(1, id);
 			pst.setString(2, firstName);
 			pst.setString(3, lastName);
@@ -604,7 +621,10 @@ public class DSLAMDAO implements Runnable {
 		insertIntoServices(jsonDetails);
 		///DSLAMDAO assignCustomer = new DSLAMDAO();
 	    assignPorts(id, stateid, jsonDetails);
-		updateOrderStatus(orderid, "PROVISIONED");
+		//updateOrderStatus(orderid, "PROVISIONED");
+	    JsonReturning js=new JsonReturning();
+	    js.callOm();
+	   
 	}
 
 	private void updateOrderStatus(int orderid, String string) {
@@ -768,8 +788,8 @@ public class DSLAMDAO implements Runnable {
 
 	public void assignONT(int customerid, String ponportid) {
 		// create seq
-
-		String ont = 'O' + Integer.toString(ontseqno++);
+		int ontseq= (int)(Math.random()*100);
+		String ont = 'O' + Integer.toString(ontseq);
 		try {
 			PreparedStatement pp = con
 					.prepareStatement("insert into ont values('" + ont + "',"
@@ -880,38 +900,41 @@ public class DSLAMDAO implements Runnable {
 		}
 	}
 
-	public String jsonreturn() {
+	public JsonArray jsonreturn() {
 	System.out.println("json entered");
-		String dd="", stat="";
+		String stat="";
 		int f = 0;
 		int cid=0, oid=0;
+		JsonArrayBuilder builder = Json.createArrayBuilder();
 		ArrayList<String> stype = new ArrayList<String>();
 		ArrayList<Integer> sid = new ArrayList<Integer>();
 		ArrayList<Integer> pid = new ArrayList<Integer>();
 		ArrayList<String> pname = new ArrayList<String>();
 		ArrayList<Integer> quantity = new ArrayList<Integer>();
 		try {
-			// CallableStatement cst=con.prepareCall("{call duedate()}");
-			// System.out.println(cst.execute();
+			 CallableStatement cst=con.prepareCall("{call duedate()}");
+			 cst.execute();
 			System.out.println("begin");
-			PreparedStatement pst = con
-					.prepareStatement("select order_id from orderprovision where stage='PROVISIONED' and due_date<=sysdate");
+			PreparedStatement pst = con.prepareStatement("select order_id from orderprovision where stage='PROVISIONED' and due_date<=sysdate");
 			ResultSet rs = pst.executeQuery();
 			System.out.println("getting order");
 			while (rs.next()) {
 				f = 1;
-				pst = con
-						.prepareStatement("select customer_id,due_date,stage from orderprovision where order_id in ?");
+				pst = con.prepareStatement("select customer_id,due_date,stage from orderprovision where order_id in ?");
 				pst.setInt(1, rs.getInt("order_id"));
 				ResultSet rs2 = pst.executeQuery();
 				if(rs2.next())
 				{
 				cid = rs2.getInt("customer_id");
-				dd = rs2.getString("due_date");
+				java.sql.Date dd = rs2.getDate("due_date");
+//				SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+//				java.util.Date utilDate = formatter.parse(dd);
+//
+//				Date date = new java.sql.Date(utilDate.getTime());
+//				dd=date;
 				stat = rs2.getString("stage");
 				oid = rs.getInt("order_id");
-				pst = con
-						.prepareStatement("select service_id,service_type From services where order_id in ?");
+				pst = con.prepareStatement("select service_id,service_type From services where order_id in ?");
 				pst.setInt(1, rs.getInt("order_id"));
 
 				rs2 = pst.executeQuery();
@@ -931,21 +954,22 @@ public class DSLAMDAO implements Runnable {
 					quantity.add(rs3.getInt("QUANTITY"));
 					}
 				}
-				System.out.println(cid+oid+stat+dd+stype+sid+quantity+pname+pid);
+				//System.out.println(cid+oid+stat+dd+stype+sid+quantity+pname+pid);
 				 JsonCreatorNew json=new JsonCreatorNew();
-					String jsonObj=json.json_creator(cid,oid,stat,dd,stype,sid,quantity,pname,pid);
-					return jsonObj;
+					javax.json.JsonObject jsonObj=json.json_creator(cid,oid,stat,dd.toString(),stype,sid,quantity,pname,pid);
+					builder.add(jsonObj);
 				}
 				
 				// String
 				
 			}
-			
-			if (f == 1) {
-				CallableStatement cst = con.prepareCall("{call duedate()}");
-				cst.execute();
-
-			}
+			JsonArray arr1=builder.build();
+			return arr1;
+//			if (f == 1) {
+//				CallableStatement cst = con.prepareCall("{call duedate()}");
+//				cst.execute();
+//
+//			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -955,13 +979,14 @@ public class DSLAMDAO implements Runnable {
 	}
 
 	public static void main(String[] args) {
-		DSLAMDAO dd = new DSLAMDAO();
-		Thread t = new Thread(dd);
-       CreateHashMap createHash=new CreateHashMap();
-       HashMap< String, Object> jsonDetails=createHash.callhash();
-       dd.insertIntoCustomer(jsonDetails);
-		t.start();
-		// dd.jsonreturn();
+//		DSLAMDAO dd = new DSLAMDAO();
+//		Thread t = new Thread(dd);
+////       CreateHashMap createHash=new CreateHashMap();
+////       HashMap< String, Object> jsonDetails=createHash.callhash();
+////       dd.insertIntoCustomer(jsonDetails);
+//		//t.start();
+//		 dd.jsonreturn();
+//		System.out.println(dd.jsonreturn());
 	}
 
 }

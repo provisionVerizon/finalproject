@@ -9,12 +9,11 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.stream.JsonGenerator;
 
-import javax.json.JsonObject;
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
 
 public class JsonCreatorNew {    
-	public String json_creator(int custID,int orderID,String provisioningStatus,String provisionDate,
+	public JsonObject json_creator(int custID,int orderID,String provisioningStatus,String provisionDate,
         ArrayList<String> serviceName,
 	     ArrayList<Integer> serviceID,
 	     ArrayList<Integer> quantity,
@@ -72,7 +71,6 @@ public class JsonCreatorNew {
 			// StringWriter writer = new StringWriter();
 			//   Json.createWriter(writer).writeArray();
 			    
-		String input= value.toString();
-        return input;
+        return value;
 	}
 }

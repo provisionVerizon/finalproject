@@ -19,17 +19,17 @@ import com.provisioning.DAOforBeans.DSLAMDAO;
 
 public class ProvisionedStatus {
 	public static void main(String[] args) throws IOException{
-		String str="";
-		DSLAMDAO dslamdao=new DSLAMDAO();
-		str=dslamdao.jsonreturn();
-		ProvisionedStatus ls = new ProvisionedStatus();
-		str = ls.CheckProvisioningStatus(str);
+//		String str="";
+//		DSLAMDAO dslamdao=new DSLAMDAO();
+//		str=dslamdao.jsonreturn();
+//		ProvisionedStatus ls = new ProvisionedStatus();
+//		str = ls.CheckProvisioningStatus(str);
 	}
 	public String CheckProvisioningStatus(String json){
 		String str ="";
-
+		System.out.println("in check provisioning status");
 		try {
-			String urlStr = "http://localhost:8080/TestRestServ/rest/om/provisioningComplete";
+			String urlStr = "http://localhost:8080/OrderManagement/rest/om/provisioningComplete";
 			URL urlToRequest = new URL(urlStr);
 			HttpURLConnection httpConnection = (HttpURLConnection) urlToRequest
 					.openConnection();
@@ -45,7 +45,7 @@ public class ProvisionedStatus {
 			outputStream.write(input.getBytes());
 			outputStream.flush();
 
-			if (httpConnection.getResponseCode() != 201) {
+			if (httpConnection.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ httpConnection.getResponseCode());
 			}
