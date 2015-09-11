@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.provisioning.DAOforBeans.ONTDAO;
+import com.provisioning.DAOforBeans.PonCardDAO;
+
 /**
  * Servlet implementation class GetDslamDetails
  */
@@ -31,9 +34,14 @@ public class GetDslamDetails extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
-		String ss="{\"ont\": [{\"ont_id\":\"123\"},{\"ont_id\":\"1245\"},{\"ont_id\":\"122\"}],\"dslam\" : [{\"dslam_id\":\"12344\"},{\"dslam_id\":\"12323\"}],\"pon_detail\":[{\"dslam_id\":\"12344\",\"pon_id\":\"134\"},{\"dslam_id\":\"12344\",\"pon_id\":\"343\"},{\"dslam_id\":\"12344\",\"pon_id\":\"323\"},{\"dslam_id\":\"12323\",\"pon_id\":\"77\"}] }";
-		System.out.println(ss);
-		out.println(ss);
+		ONTDAO ont=new ONTDAO();
+		String ss2=ont.getONT();
+		PonCardDAO poncard=new PonCardDAO();
+		ss2+=poncard.getDSLAM();
+		ss2+=poncard.getPonIds();
+		//String ss="{\"ont\": [{\"ont_id\":\"123\"},{\"ont_id\":\"1245\"},{\"ont_id\":\"122\"}],\"dslam\" : [{\"dslam_id\":\"12344\"},{\"dslam_id\":\"12323\"}],\"pon_detail\":[{\"dslam_id\":\"12344\",\"pon_id\":\"134\"},{\"dslam_id\":\"12344\",\"pon_id\":\"343\"},{\"dslam_id\":\"12344\",\"pon_id\":\"323\"},{\"dslam_id\":\"12323\",\"pon_id\":\"77\"}] }";
+		System.out.println(ss2);
+		out.println(ss2);
 	}
 
 	/**

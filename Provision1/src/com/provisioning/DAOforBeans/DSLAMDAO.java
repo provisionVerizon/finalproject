@@ -189,7 +189,7 @@ public class DSLAMDAO{
 			shelfStatus[1] = true;
 		else {
 			System.out.println((String)mydslam.get("servicename"));
-			String servicename = servicesMap.get((String)mydslam.get("servicename"));
+			String servicename = servicesMap.get(((String)mydslam.get("servicename")).toLowerCase());
 			System.out.println(servicename);
 			shelfStatus[5] = true;
 			switch(servicename) {
@@ -584,8 +584,13 @@ public class DSLAMDAO{
 		int id = Integer.parseInt((String) jsonDetails.get("customerid"));
 		String name = (String) jsonDetails.get("customername");
 		String names[]=name.split(" ");
+		
 		String firstName=names[0];
-		String lastName=names[1];
+		String lastName="";
+		if(names.length>1)
+		{
+			lastName=names[1];
+		}
 		String type = (String) jsonDetails.get("customertype");
 		int stateid = Integer.parseInt((String) jsonDetails.get("stateid"));
 		String street = (String) jsonDetails.get("streetname");
@@ -623,7 +628,7 @@ public class DSLAMDAO{
 	    assignPorts(id, stateid, jsonDetails);
 		//updateOrderStatus(orderid, "PROVISIONED");
 	    JsonReturning js=new JsonReturning();
-	    js.callOm();
+	    js.callOm(Integer.parseInt((String)jsonDetails.get("orderid")));
 	   
 	}
 

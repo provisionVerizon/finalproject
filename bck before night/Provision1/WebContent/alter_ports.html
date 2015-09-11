@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>2015</title>
+<meta name="description" content="website description" />
+<meta name="keywords" content="website keywords, website keywords" />
+<meta http-equiv="content-type"
+	content="text/html; charset=windows-1252" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<!-- modernizr enables HTML5 elements and feature detects -->
+<script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+ <script src="js/jquery.js"></script>
+<script src="js/disconnected_order.js">
+	
+</script>
+
+</head>
+
+<body>
+	<nav>
+		<div id="menubar">
+			<ul id="nav">
+				<li><a href="index.html">Home</a></li>
+          <li><a href="query.html">CUSTOMER QUERY</a></li>
+          <li><a href="new_order.html">FILTER ORDER BY DATE</a></li>
+          <li class="current"><a href="alter_ports.html">ALTER PORT STATUS</a></li>
+         <li><a href="display_equip.html">DISPLAY EQUIPMENT</a>&nbsp;&nbsp; </li>
+				</li>
+			</ul>
+		</div>
+		<!--close menubar-->
+	</nav>
+
+
+	<div id="site_content">
+
+		</form>
+		<div id="content1">
+			<select id="dSlam">
+
+			</select> <select id="dOnt">
+
+			</select> <select id="dSlampon">
+
+			</select> <select id="dSlampon">
+
+			</select>
+		</div>
+		<!--close content-->
+		<div id="content2"></div>
+		<!--close content-->
+		<div id="content3"></div>
+		<div id="content4">
+			<form>
+				<input type="radio" name="changestatus" value="pon_port" checked>PON PORT <br>
+				<input type="radio" name="changestatus" value="VOICE CARD PORT">VOICE CARD PORT<BR>
+				<input type="radio" name="changestatus" value="VIDEO CARD PORT">VIDEO CARD PORT<BR>
+				<input type="radio" name="changestatus" value="ONT PORT">ONT PORT<BR>
+				<input type="radio" name="changestatus" value="WIRELESS PORT">WIRELESS PORT<BR>
+				<input type="radio" name="changestatus" value="VES CARD PORT">VES CARD PORT<BR>
+				<input type="text" name="" value="">
+				<input type="button" value="ENABLE" onclick="enablePort()">
+				<input type="button" value="DISABLE" onclick="disablePort()">						
+			</form>
+
+		</div>
+
+		<!--close site_content-->
+
+	</div>
+	<!--close main-->
+
+
+	<footer>
+		 <a href="http://www.verizon.com/about/">About Verizon</a> | <a href="http://www.verizon.com/about/privacy/">Privacy</a> | <a href="http://www.verizon.com/home/sitemap/">Site Map</a> | <a href="http://www.verizon.com/about/terms/">Terms and Conditions</a> | <a href="contact.html">Contact</a><br/><br/>
+	</footer>
+
+
+</body>
+</html>

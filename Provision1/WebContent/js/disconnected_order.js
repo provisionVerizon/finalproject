@@ -9,12 +9,88 @@ xmlhttp.onreadystatechange = function() {
 }
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
+var t_id="";
+var flag="";
+var status;
 function enablePort() {
-    alert("Ssss");
+    status="enable";
+	flag="";
+    if (document.getElementById('pon_port').checked) {
+    	  flag="ponport";
+    	}
+    
+    else if(document.getElementById('ont').checked) {
+    	  flag="ont";
+  	}
+    t_id=document.getElementById('id').value;
+    //alert(flag+"  "+t_id);
+    sendUpdate();
 }
+
+function disablePort() {
+
+	status="disable";
+	flag="";
+    if (document.getElementById('pon_port').checked) {
+    	  flag="ponport";
+    	}
+    else if(document.getElementById('ont').checked) {
+    	  flag="ont";
+  	}
+    t_id=document.getElementById('id').value;
+   // alert(flag+"  "+t_id);
+    sendUpdate();
+	}
+
+function sendUpdate()
+{
+   //alert(flag+"  "+t_id+" sbksbkjs");
+	alert("port status "+status+" successfully");
+   var str=flag+"_"+t_id+"*"+status;
+	dataString = "name=" + str;
+	//dataString += "id=" + t_id;
+
+	$
+			.ajax({
+				type : "GET",
+				url : "UpdatePort",
+				data : dataString,
+				dataType : "json",
+
+				success : function(data,
+						textStatus, jqXHR) {
+				
+				},
+
+			
+				error : function(jqXHR,
+						textStatus,
+						errorThrown) {
+					console
+							.log("Something really bad happened "
+									+ textStatus);
+
+				},
+
+				beforeSend : function(
+						jqXHR, settings) {
+					// adding some Dummy
+					// data to the request
+					settings.data += "&dummyData=whatever";
+
+				},
+
+				complete : function(jqXHR,
+						textStatus) {
+
+				}
+
+			});	
+	 getPon();
+}
+
 function myFunction(response) {
 	arr = JSON.parse(response);
-	//alert(response);
 	var i;
 
 	$("#dSlam").empty();
@@ -34,11 +110,83 @@ function myFunction(response) {
 						+ arr.ont[i].ont_id + "</option>");
 		// out2+= "<option >" +arr.pon_detail[i].pon_id +"</option>"
 	}
-
+  
 	// out2+="</select>"
 
 }
+function getPon()
+{
+	var pon=document.getElementById('dSlampon').value;
+	//alert(pon);
+	dataString = "pon="+pon;
+	$
+			.ajax({
+				type : "GET",
+				url : "GetPonStatus",
+				data : dataString,
+				dataType : "json",
 
+				// if received a response
+				// from the server
+				success : function(data,
+						textStatus, jqXHR) {
+					//alert(data.pon_port_id);
+					$("#content5").empty();
+					var ss = "<table border=\"1px solid black\"><tr><td>TYPE</td><td>ID</td><td>STATUS</td></tr>";
+                    var i;
+                    for(i=0;i<data.pon_port.length;i++)
+                    	{
+                    	ss += "<tr><td>"
+                    		+data.pon_port[i].name
+                    		+ "</td><td>"
+							+ data.pon_port[i].id
+							+ "</td><td>"
+							+ data.pon_port[i].status
+							+ "</td><tr>";
+                    	}
+						ss + "</table>"
+					$("#content5").append(
+							ss);
+					// $("#content2").append(
+					// data.result);
+					// $("#content2").append(
+					// "</h3>");
+				},
+
+				// If there was no resonse
+				// from the server
+				error : function(jqXHR,
+						textStatus,
+						errorThrown) {
+					console
+							.log("Something really bad happened "
+									+ textStatus);
+
+				},
+
+				// capture the request
+				// before it was sent to
+				// server
+				beforeSend : function(
+						jqXHR, settings) {
+					// adding some Dummy
+					// data to the request
+					settings.data += "&dummyData=whatever";
+
+				},
+
+				// this is called after the
+				// response or error
+				// functions are finsihed
+				// so that we can take some
+				// action
+				complete : function(jqXHR,
+						textStatus) {
+
+				}
+
+			});
+}
 $(document)
 		.ready(
 				function() {
@@ -143,9 +291,7 @@ $(document)
 										
 										
 									});
-					$('#bOnt').on("click",function(){
-				        alert('hi');
-				    });
+					
 
 //					$("#dOnt").on("click", "button.bOnt", function(){
 //					    alert("Aaa");
@@ -156,115 +302,11 @@ $(document)
 							.change(
 									function() {
 
-										dataString = "name=aditya";
-										$
-												.ajax({
-													type : "GET",
-													url : "GetPonDetails",
-													data : dataString,
-													dataType : "json",
-
-													// if received a response
-													// from the server
-													success : function(data,
-															textStatus, jqXHR) {
-														//alert(data.pon_port_id);
-														$("#content2").empty();
-														var ss = "<table border=\"1px solid black\">";
-
-														ss += "<tr><td>PON PORT</td><td>"
-																+ data.pon_port_id
-																+ "</td><td>"
-																+ data.pon_port_status
-																+ "</td><td><button name=\"bPon\" id=\"bPon\">";
-														if (data.pon_port_status == "running")
-															ss += "DISABLE";
-														else if (data.pon_port_status == "disable")
-															ss += "RUNNING";
-														ss += "</button></td></tr>";
-														if (data.data == "yes") {
-															ss += "<tr><td>DATA CARD</td><td>"
-																	+ data.data_card_id
-																	+ "</td><td>"
-																	+ data.data_port_status
-																	+ "</td><td><button name=\"bData\" id=\"bData\">";
-															if (data.data_port_status == "running")
-																ss += "DISABLE";
-															else if (data.data_port_status == "disable")
-																ss += "RUNNING";
-															ss += "</button></td></tr>";
-
-														}
-														if (data.voice == "yes") {
-															ss += "<tr><td>VOICE CARD</td><td>"
-																	+ data.voice_card_id
-																	+ "</td><td>"
-																	+ data.voice_card_status
-																	+ "</td><td><button name=\"bVoice\" id=\"bVoice\">";
-															if (data.voice_card_status == "running")
-																ss += "DISABLE";
-															else if (data.voice_card_status == "disable")
-																ss += "RUNNING";
-															ss += "</button></td></tr>";
-														}
-														if (data.video == "yes") {
-															ss += "<tr><td>VIDEO CARD</td><td>"
-																	+ data.video_card_id
-																	+ "</td><td>"
-																	+ data.video_card_status
-																	+ "</td><td><button name=\"bVideo\" id=\"bVideo\">";
-															if (data.video_card_status == "running")
-																ss += "DISABLE";
-															else if (data.video_card_status == "disable")
-																ss += "RUNNING";
-															ss += "</button></td></tr>";
-														}
-														ss + "</table>"
-														$("#content2").append(
-																ss);
-														// $("#content2").append(
-														// data.result);
-														// $("#content2").append(
-														// "</h3>");
-													},
-
-													// If there was no resonse
-													// from the server
-													error : function(jqXHR,
-															textStatus,
-															errorThrown) {
-														console
-																.log("Something really bad happened "
-																		+ textStatus);
-
-													},
-
-													// capture the request
-													// before it was sent to
-													// server
-													beforeSend : function(
-															jqXHR, settings) {
-														// adding some Dummy
-														// data to the request
-														settings.data += "&dummyData=whatever";
-
-													},
-
-													// this is called after the
-													// response or error
-													// functions are finsihed
-													// so that we can take some
-													// action
-													complete : function(jqXHR,
-															textStatus) {
-
-													}
-
-												});
+										getPon();
 
 									});
 				});
-
+     
 /*
  * 
  * 
